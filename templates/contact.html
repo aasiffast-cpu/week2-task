@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}Contact{% endblock %} {% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="h4 mb-3">Contact us</h2>
+
+        <form action="{{ url_for('contact') }}" method="post" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Name</label>
+                <input id="username" name="username" type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

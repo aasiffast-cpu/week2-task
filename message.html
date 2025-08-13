@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block title %}Messages{% endblock %} {% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h4 m-0">Stored Messages</h2>
+    <form action="{{ url_for('clear') }}" method="post">
+        <button class="btn btn-outline-danger btn-sm" type="submit">Clear All</button>
+    </form>
+</div>
+
+{% if messages and messages|length > 0 %}
+<div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in messages %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ m.username if m.username is defined else m["username"] }}</td>
+                <td>{{ m.email if m.email is defined else m["email"] }}</td>
+                <td>{{ m.message if m.message is defined else m["message"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="text-muted">No messages yet. Submit the contact form to add one.</p>
+{% endif %} {% endblock %}
